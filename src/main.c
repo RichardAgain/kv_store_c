@@ -1,14 +1,4 @@
 
-#include <stdio.h>
+#include "kv.h"
 
-void foo(int **pInt) {
-  printf("%p\n", *pInt);
-  printf("%d\n", **pInt);
-}
-
-int main() {
-  int i = 10;
-  int *p = &i;
-
-  foo(&p);
-}
+int main() { kv_table *table = kv_init(16); }

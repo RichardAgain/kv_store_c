@@ -1,5 +1,18 @@
 [
   {
+    "file": "src/kv.c",
+    "arguments": [
+      "gcc",
+      "-c",
+      "src/kv.c",
+      "-o",
+      "obj/kv.o",
+      "-Iinc"
+    ],
+    "directory": "/home/richardo/projects/kv_project",
+    "output": "obj/kv.o"
+  },
+  {
     "file": "src/main.c",
     "arguments": [
       "gcc",
@@ -7,7 +20,7 @@
       "src/main.c",
       "-o",
       "obj/main.o",
-      "-Iinclude"
+      "-Iinc"
     ],
     "directory": "/home/richardo/projects/kv_project",
     "output": "obj/main.o"
