@@ -1,11 +1,11 @@
 #include "kv.h"
 #include <stdlib.h>
 
-kv_table *kv_init(size_t capacity) {
+kv_t *kv_init(size_t capacity) {
   if (capacity == 0)
     return NULL;
 
-  kv_table *table = malloc(sizeof(kv_table));
+  kv_t *table = malloc(sizeof(kv_t));
 
   if (table == NULL) {
     return NULL;
@@ -14,7 +14,7 @@ kv_table *kv_init(size_t capacity) {
   table->capacity = capacity;
   table->count = 0;
 
-  table->entries = calloc(sizeof(kv_entry), capacity);
+  table->entries = calloc(sizeof(kv_entry_t), capacity);
   if (table->entries == NULL) {
     free(table);
     return NULL;

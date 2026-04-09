@@ -1,4 +1,4 @@
 
 #include "kv.h"
 
-int main() { kv_table *table = kv_init(16); }
+int main() { kv_t *table = kv_init(16); }
