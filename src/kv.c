@@ -22,11 +22,11 @@ int kv_put(kv_t *db, const char *key, const char *value) {
   int index = hash(key, db->capacity);
 
   for (int i = 0; i < db->capacity - 1; i++) {
-    int real_idx = index + 1;
+    int real_idx = (index + i) % db->capacity;
 
     kv_entry_t *entry = &db->entries[real_idx];
 
-    if (entry->value != NULL) {
+    if (entry->key && strcmp(entry->key, key) == 0) {
       char *new_value = strdup(value);
       if (new_value == NULL) {
         free(new_value);
