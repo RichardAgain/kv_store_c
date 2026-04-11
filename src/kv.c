@@ -46,6 +46,7 @@ int kv_put(kv_t *db, const char *key, const char *value) {
       }
       entry->value = new_value;
       entry->key = new_key;
+      db->count++;
       return real_idx;
     }
   }
