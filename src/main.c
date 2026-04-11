@@ -10,10 +10,13 @@ int main() {
   //   kv_entry_t entry = table->entries[index];
   //   printf("[%d] %s: %s\n", index, entry.key, entry.value);
 
-  for (int i = 0; i < table->capacity; i++) {
-    if (table->entries[i].key) {
-      printf("[%d] %s: %s\n", i, table->entries[i].key,
-             table->entries[i].value);
-    }
-  }
+  // for (int i = 0; i < table->capacity; i++) {
+  //   if (table->entries[i].key) {
+  //     printf("[%d] %s: %s\n", i, table->entries[i].key,
+  //            table->entries[i].value);
+  //   }
+  // }
+
+  char *value = kv_get(table, "hello");
+  printf("%s\n", value);
 }
