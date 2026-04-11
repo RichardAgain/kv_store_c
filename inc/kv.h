@@ -1,3 +1,6 @@
+#ifndef KV_H
+#define KV_H
+
 #include <stdlib.h>
 
 typedef struct {
@@ -12,4 +15,7 @@ typedef struct {
 } kv_t;
 
 kv_t *kv_init(size_t capacity);
+int kv_put(kv_t *db, const char *key, const char *value);
 void kv_free(kv_t *table);
+
+#endif
