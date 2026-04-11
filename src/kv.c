@@ -33,7 +33,8 @@ int kv_put(kv_t *db, const char *key, const char *value) {
         return -1;
       }
       entry->value = new_value;
-      return real_idx;
+      // return real_idx;
+      return 0;
     }
 
     if (entry->value == NULL) {
@@ -47,7 +48,8 @@ int kv_put(kv_t *db, const char *key, const char *value) {
       entry->value = new_value;
       entry->key = new_key;
       db->count++;
-      return real_idx;
+      // return real_idx;
+      return 0;
     }
   }
 
