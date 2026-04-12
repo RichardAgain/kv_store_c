@@ -5,13 +5,12 @@
 int main() {
   kv_t *table = kv_init(16);
 
-  int index1 = kv_put(table, "hello", "yes i am");
-  int index2 = kv_put(table, "hello", "no, i am not");
-  int index3 = kv_put(table, "good morning", "ooh, ooh, ooh, ooh-ooh-ooh");
-  //   kv_entry_t entry = table->entries[index];
-  //   printf("[%d] %s: %s\n", index, entry.key, entry.value);
+  kv_put(table, "hello", "yes i am");
+  kv_put(table, "hello", "no, i am not");
+  kv_put(table, "good morning", "ooh, ooh, ooh, ooh-ooh-ooh");
 
   kv_delete(table, "good morning");
+  kv_put(table, "good morning", "ooh, ooh, ooh, ooh-ooh-ooh");
 
   for (int i = 0; i < table->capacity; i++) {
     if (table->entries[i].key) {
