@@ -18,4 +18,6 @@ int main() {
              table->entries[i].value);
     }
   }
+
+  kv_free(table);
 }
