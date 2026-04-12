@@ -5,8 +5,9 @@
 int main() {
   kv_t *table = kv_init(16);
 
-  kv_put(table, "hello", "yes i am");
-  kv_put(table, "hello", "no, i am not");
+  int index1 = kv_put(table, "hello", "yes i am");
+  int index2 = kv_put(table, "hello", "no, i am not");
+  int index3 = kv_put(table, "good morning", "ooh, ooh, ooh, ooh-ooh-ooh");
   //   kv_entry_t entry = table->entries[index];
   //   printf("[%d] %s: %s\n", index, entry.key, entry.value);
 
@@ -17,6 +18,8 @@ int main() {
   //   }
   // }
 
-  char *value = kv_get(table, "hello");
-  printf("%s\n", value);
+  kv_delete(table, "good morning");
+
+  printf("[%d]: %s\n", index1, table->entries[index1].value);
+  printf("[%d]: %s\n", index3, table->entries[index3].value);
 }

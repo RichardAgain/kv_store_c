@@ -38,6 +38,36 @@ char *kv_get(kv_t *db, const char *key) {
   return NULL;
 }
 
+int kv_delete(kv_t *db, const char *key) {
+  if (!db || !key) {
+    return -1;
+  }
+
+  int index = hash(key, db->capacity);
+
+  for (int i = 0; i < db->capacity - 1; i++) {
+    int real_idx = (index + i) % db->capacity;
+
+    kv_entry_t *entry = &db->entries[real_idx];
+
+    if (entry->key == NULL) {
+      return -1;
+    }
+
+    if (entry->key && entry->key != TOMBSTONE && strcmp(entry->key, key) == 0) {
+      free(entry->key);
+      free(entry->value);
+      entry->key = TOMBSTONE;
+      entry->value = NULL;
+
+      db->count--;
+      return real_idx;
+    }
+  }
+
+  return -1;
+}
+
 int kv_put(kv_t *db, const char *key, const char *value) {
   if (!db || !key || !value) {
     return -1;
@@ -57,8 +87,8 @@ int kv_put(kv_t *db, const char *key, const char *value) {
         return -1;
       }
       entry->value = new_value;
-      // return real_idx;
-      return 0;
+      return real_idx;
+      // return 0;
     }
 
     if (!entry->key || entry->key == TOMBSTONE) {
@@ -72,8 +102,8 @@ int kv_put(kv_t *db, const char *key, const char *value) {
       entry->value = new_value;
       entry->key = new_key;
       db->count++;
-      // return real_idx;
-      return 0;
+      return real_idx;
+      // return 0;
     }
   }
 
