@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define TOMBSTONE ((char *)0x1)
-
 int hash(const char *value, size_t capacity) {
   unsigned int h = 2166136261u;
   while (*value) {
@@ -111,9 +109,9 @@ int kv_put(kv_t *db, const char *key, const char *value) {
   return -2;
 }
 
-int kv_free(kv_t *db) {
-  if (!db)
-    return -1;
+void kv_free(kv_t *db) {
+  // if (!db)
+  //   return -1;
 
   for (int i = 0; i < db->capacity - 1; i++) {
     kv_entry_t *entry = &db->entries[i];
@@ -130,7 +128,7 @@ int kv_free(kv_t *db) {
   free(db->entries);
   free(db);
 
-  return 0;
+  // return 0;
 }
 
 kv_t *kv_init(size_t capacity) {
