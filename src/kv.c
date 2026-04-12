@@ -61,10 +61,10 @@ int kv_put(kv_t *db, const char *key, const char *value) {
       return 0;
     }
 
-    if (entry->value == NULL) {
+    if (!entry->key || entry->key == TOMBSTONE) {
       char *new_value = strdup(value);
       char *new_key = strdup(key);
-      if (new_value == NULL || new_key == NULL) {
+      if (!new_value || !new_key) {
         free(new_value);
         free(new_key);
         return -1;
