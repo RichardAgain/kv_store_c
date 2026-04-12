@@ -84,9 +84,9 @@ int kv_put(kv_t *db, const char *key, const char *value) {
     if (entry->key && entry->key != TOMBSTONE && strcmp(entry->key, key) == 0) {
       char *new_value = strdup(value);
       if (new_value == NULL) {
-        free(new_value);
         return -1;
       }
+      free(entry->value);
       entry->value = new_value;
       // return real_idx;
       return 0;
