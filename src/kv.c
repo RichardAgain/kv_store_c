@@ -61,7 +61,8 @@ int kv_delete(kv_t *db, const char *key) {
       entry->value = NULL;
 
       db->count--;
-      return real_idx;
+      // return real_idx;
+      return 0;
     }
   }
 
@@ -87,8 +88,8 @@ int kv_put(kv_t *db, const char *key, const char *value) {
         return -1;
       }
       entry->value = new_value;
-      return real_idx;
-      // return 0;
+      // return real_idx;
+      return 0;
     }
 
     if (!entry->key || entry->key == TOMBSTONE) {
@@ -102,8 +103,8 @@ int kv_put(kv_t *db, const char *key, const char *value) {
       entry->value = new_value;
       entry->key = new_key;
       db->count++;
-      return real_idx;
-      // return 0;
+      // return real_idx;
+      return 0;
     }
   }
 

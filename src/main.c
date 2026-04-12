@@ -11,15 +11,12 @@ int main() {
   //   kv_entry_t entry = table->entries[index];
   //   printf("[%d] %s: %s\n", index, entry.key, entry.value);
 
-  // for (int i = 0; i < table->capacity; i++) {
-  //   if (table->entries[i].key) {
-  //     printf("[%d] %s: %s\n", i, table->entries[i].key,
-  //            table->entries[i].value);
-  //   }
-  // }
-
   kv_delete(table, "good morning");
 
-  printf("[%d]: %s\n", index1, table->entries[index1].value);
-  printf("[%d]: %s\n", index3, table->entries[index3].value);
+  for (int i = 0; i < table->capacity; i++) {
+    if (table->entries[i].key) {
+      printf("[%d] %s: %s\n", i, table->entries[i].key,
+             table->entries[i].value);
+    }
+  }
 }
