@@ -110,8 +110,8 @@ int kv_put(kv_t *db, const char *key, const char *value) {
 }
 
 void kv_free(kv_t *db) {
-  // if (!db)
-  //   return -1;
+  if (!db)
+    return;
 
   for (int i = 0; i < db->capacity - 1; i++) {
     kv_entry_t *entry = &db->entries[i];
@@ -127,8 +127,6 @@ void kv_free(kv_t *db) {
 
   free(db->entries);
   free(db);
-
-  // return 0;
 }
 
 kv_t *kv_init(size_t capacity) {
